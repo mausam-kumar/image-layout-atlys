@@ -7,12 +7,17 @@ import Loader from "./Loader";
 import MobilePopover from "./popover/MobilePopover";
 
 const CardGrid = () => {
-    const { images, isLoading, error } = useFetchImageList()
+    const { images, error, loadMore, isLoading } = useFetchImageList()
     const { showPopover } = useGlobalStateContext()
 
-    if (isLoading || !images) {
-        return <Loader />
-    }
+    const endOfPageRef = (endPage: HTMLDivElement | null) => {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                loadMore();
+            }
+        });
+        if (endPage) observer.observe(endPage);
+    };
 
     if (error) {
         return <Error message="Error while fetching images." />
@@ -23,7 +28,7 @@ const CardGrid = () => {
             <div
                 className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2"
             >
-                {images.map((image) => {
+                {images?.map((image) => {
                     const { download_url, id, author } = image
                     return <ImageCard
                         key={id}
@@ -31,6 +36,8 @@ const CardGrid = () => {
                         title={author}
                         alt={author}
                         id={id}
+                        height={300}
+                        width={500}
                         loading="eager"
                         showPopover={() => showPopover({
                             children: <ImageCardDetails {...image} />,
@@ -39,6 +46,10 @@ const CardGrid = () => {
                     />
                 }
                 )}
+            </div>
+            <div ref={endOfPageRef} />
+            <div className="mt-2">
+                {isLoading && <Loader />}
             </div>
             <MobilePopover />
         </>

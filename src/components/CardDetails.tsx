@@ -5,7 +5,7 @@ import Image from "./Image";
 import { useGlobalStateContext } from "../context/GlobalStateProvider";
 
 
-const ImageCardDetails: FC<ImageProps> = ({ download_url, author, height, width, id }) => {
+const ImageCardDetails: FC<ImageProps> = ({ download_url, author, id }) => {
     const { hidePopover } = useGlobalStateContext()
 
     return (
@@ -22,8 +22,8 @@ const ImageCardDetails: FC<ImageProps> = ({ download_url, author, height, width,
                 <Image
                     title={author}
                     id={id}
-                    height={height}
-                    width={width}
+                    height={300}
+                    width={500}
                     src={`https://picsum.photos/id/${id}/500/300`}
                     className="w-full object-contain"
                 />

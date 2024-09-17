@@ -10,8 +10,6 @@ const MobilePopover = () => {
         return null
     }
 
-    console.log(selectedImage)
-
     return <AnimatePresence>
         <motion.div
             className="fixed sm:hidden inset-0  h-screen z-50 flex items-center justify-center bg-white"
