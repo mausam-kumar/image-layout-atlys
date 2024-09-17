@@ -1,15 +1,12 @@
 import './App.css'
-import ImageDetails from './ImageDetails'
-import ImageGrid from './ImageGrid'
+import CardGrid from './components/CardGrid'
 
 function App() {
 
   return (
-    <>
-      <h1>Images Layout</h1>
-      <ImageGrid />
-      <ImageDetails />
-    </>
+    <div className='p-4'>
+      <CardGrid />
+    </div>
   )
 }
 

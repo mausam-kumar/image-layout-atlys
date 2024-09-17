@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { BASE_URL, LIMIT } from "../constant";
 import { Image } from "../type";
 
 interface IGetImageResponse {
-    data: Image[] | null;
+    images: Image[] | null;
     isLoading: boolean;
     error: string | null;
     currentPage: number;
@@ -17,6 +17,7 @@ const useFetchImageList = (): IGetImageResponse => {
     const [error, setError] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const uniqueIds = useMemo(() => new Set<string>(), []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +28,9 @@ const useFetchImageList = (): IGetImageResponse => {
                 const response = await axios.get<Image[]>(
                     `${BASE_URL}/v2/list?page=${currentPage}&limit=${LIMIT}`
                 );
-                setData((prevData) => [...(prevData || []), ...response.data]);
+                const newItems = response.data.filter((item) => !uniqueIds.has(item.id));
+                newItems.forEach((item) => uniqueIds.add(item.id));
+                setData(prevData => [...(prevData || []), ...newItems]);
 
                 if (response.data.length < LIMIT) {
                     setHasMore(false);
@@ -40,7 +43,7 @@ const useFetchImageList = (): IGetImageResponse => {
         };
 
         fetchData();
-    }, [currentPage]);
+    }, [currentPage, uniqueIds]);
 
     const loadMore = () => {
         if (!isLoading && hasMore) {
@@ -49,7 +52,7 @@ const useFetchImageList = (): IGetImageResponse => {
     };
 
     return {
-        data,
+        images: data,
         isLoading,
         error,
         currentPage,
