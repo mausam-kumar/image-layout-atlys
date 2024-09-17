@@ -1,12 +1,12 @@
 import './App.css'
 import CardGrid from './components/CardGrid'
-
+import { GlobalStateProvider } from './context/GlobalStateProvider'
 function App() {
 
   return (
-    <div className='p-4'>
+    <GlobalStateProvider>
       <CardGrid />
-    </div>
+    </GlobalStateProvider>
   )
 }
 

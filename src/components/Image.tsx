@@ -16,7 +16,7 @@ const Image: React.FC<ImageProps> = ({
 
     return (
         <div
-            className="relative overflow-hidden bg-gray-100"
+            className="relative bg-gray-100"
             style={{
                 backgroundColor: placeholderColor,
             }}
@@ -25,9 +25,7 @@ const Image: React.FC<ImageProps> = ({
                 <img
                     onLoad={handleLoad}
                     onError={handleError}
-                    height="auto"
-                    className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"
-                        }`}
+                    className={`absolute top-0 left-0 transition-all w-full h-full object-contain duration-300`}
                     {...props}
                 />
             )}
