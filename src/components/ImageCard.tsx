@@ -6,7 +6,8 @@ interface ImageCardProps extends ImageProps {
     showPopover: () => void
 }
 
-const ImageCard: FC<ImageCardProps> = ({ title, src, showPopover, ...props }) => {
+const ImageCard: FC<ImageCardProps> = ({ src, id, showPopover, ...props }) => {
+
     return (
         <motion.div
             layoutId={src}
@@ -15,12 +16,9 @@ const ImageCard: FC<ImageCardProps> = ({ title, src, showPopover, ...props }) =>
         >
             <Image
                 {...props}
-                src={src}
+                src={`https://picsum.photos/id/${id}/500/300`}
                 className="w-full object-contain"
             />
-            <div className="p-4">
-                <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-            </div>
         </motion.div>
     );
 };

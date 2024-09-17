@@ -14,7 +14,6 @@ const MobilePopover = () => {
 
     return <AnimatePresence>
         <motion.div
-            // layoutId={selectedImage.key || ""}
             className="fixed sm:hidden inset-0  h-screen z-50 flex items-center justify-center bg-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -10,7 +10,6 @@ const Image: React.FC<ImageProps> = ({
 }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
-
     const handleLoad = () => setIsLoaded(true);
     const handleError = () => setHasError(true);
 

@@ -21,17 +21,16 @@ const CardGrid = () => {
     return (
         <>
             <div
-                className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2"
+                className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2"
             >
                 {images.map((image) => {
-                    const { download_url, id, author, height, width } = image
+                    const { download_url, id, author } = image
                     return <ImageCard
                         key={id}
                         src={download_url}
                         title={author}
                         alt={author}
-                        width={width}
-                        height={height}
+                        id={id}
                         loading="eager"
                         showPopover={() => showPopover({
                             children: <ImageCardDetails {...image} />,
