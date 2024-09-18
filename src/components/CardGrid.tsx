@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useCallback, useRef } from "react";
 import { useGlobalStateContext } from "../context/GlobalStateProvider";
 import useFetchImageList from "../hooks/useFetchImageList";
 import ImageCardDetails from "./CardDetails";
-import Error from "./Error";
 import ImageCard from "./ImageCard";
 import Loader from "./Loader";
 import MobilePopover from "./popover/MobilePopover";
@@ -10,17 +11,22 @@ const CardGrid = () => {
     const { images, error, loadMore, isLoading } = useFetchImageList()
     const { showPopover } = useGlobalStateContext()
 
-    const endOfPageRef = (endPage: HTMLDivElement | null) => {
-        const observer = new IntersectionObserver((entries) => {
+    const observer = useRef<any>(null);
+
+    const endOfPageRef = useCallback((endPage: HTMLDivElement | null) => {
+        if (isLoading) return;
+        if (observer.current) observer.current.disconnect();
+        observer.current = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 loadMore();
             }
-        }, { threshold: 0.3 });
-        if (endPage) observer.observe(endPage);
-    };
+        });
+        if (endPage) observer.current.observe(endPage);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoading]);
 
     if (error) {
-        return <Error message="Error while fetching images." />
+        return <Loader />
     }
 
     return (
@@ -47,7 +53,7 @@ const CardGrid = () => {
                 }
                 )}
             </div>
-            <div className="h-16" ref={endOfPageRef} />
+            {!isLoading && <div className="h-2" ref={endOfPageRef} />}
             <div className="mt-2">
                 {isLoading && <Loader />}
             </div>
