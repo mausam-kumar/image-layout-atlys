@@ -14,7 +14,7 @@ const ImageCard: FC<ImageCardProps> = ({ src, id, showPopover, ...props }) => {
                 layoutId={src}
                 onClick={showPopover}
                 transition={{ duration: 0.2 }}
-                className="cursor-pointer md:hidden bg-white shadow-sm border rounded-lg overflow-hidden w-full"
+                className="cursor-pointer sm:hidden bg-white shadow-sm border rounded-lg overflow-hidden w-full"
             >
                 <Image
                     {...props}
@@ -24,7 +24,7 @@ const ImageCard: FC<ImageCardProps> = ({ src, id, showPopover, ...props }) => {
             </motion.div>
             <motion.div
                 onClick={showPopover}
-                className="cursor-pointer hidden md:block hover:scale-105 hover:shadow hover:border transition-transform duration-200 bg-white shadow-sm border rounded-lg overflow-hidden w-full"
+                className="cursor-pointer hidden sm:block hover:scale-105 hover:shadow hover:border transition-transform duration-200 bg-white shadow-sm border rounded-lg overflow-hidden w-full"
             >
                 <Image
                     {...props}

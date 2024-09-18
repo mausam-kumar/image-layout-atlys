@@ -16,7 +16,7 @@ const PopoverWrapper = () => {
     }, [selectedImage.children])
 
     return <>
-        <div className="hidden md:block h-screen">
+        <div className="hidden sm:block h-screen">
             <div className="flex w-full space-x-2">
                 <div className="w-full overflow-y-scroll h-screen no-scrollbar">
                     <CardGrid />
@@ -30,7 +30,7 @@ const PopoverWrapper = () => {
                 </div>
             </div>
         </div>
-        <div className="md:hidden">
+        <div className="sm:hidden">
             <CardGrid />
             <MobilePopover />
         </div>

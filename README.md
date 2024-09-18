@@ -1,50 +1,30 @@
-# React + TypeScript + Vite
+# Image Gallery with Popover
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This app is an image gallery built with React, TypeScript, Tailwind CSS, and Framer Motion. It features a dynamic grid of images where clicking on an image reveals a popover with detailed information.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Grid Layout**: A dynamic grid of images that adjusts based on screen size.
+- **Animated Popover**: On card click, a popover opens with smooth width transition animations handled by Framer Motion.
+- **Infinite Scroll**: The grid supports infinite scroll to fetch more images.
+- **Error Handling**: Displays appropriate error messages if data fetching fails.
+- **Loading State**: Shows a loader while images or data are being fetched.
+- **Mobile and Desktop View**: Popover behavior for mobile and desktop views.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository:
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   git clone https://github.com/mausam-kumar/image-layout-atlys.git
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. Install packages:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```bash
+   npm install
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. Start server:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   npm run dev
+
