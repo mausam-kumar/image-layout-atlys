@@ -1,11 +1,11 @@
 import './App.css'
-import CardGrid from './components/CardGrid'
+import PopoverWrapper from './components/popover/PopoverWrapper'
 import { GlobalStateProvider } from './context/GlobalStateProvider'
 function App() {
 
   return (
     <GlobalStateProvider>
-      <CardGrid />
+      <PopoverWrapper />
     </GlobalStateProvider>
   )
 }

@@ -18,6 +18,7 @@ const ImageCardDetails: FC<ImageProps> = ({ download_url, author, id }) => {
             <motion.div
                 layoutId={download_url}
                 className="cursor-pointer p-4 rounded shadow"
+                transition={{ duration: 0.2 }}
             >
                 <Image
                     title={author}
