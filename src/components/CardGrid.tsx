@@ -15,7 +15,7 @@ const CardGrid = () => {
             if (entries[0].isIntersecting) {
                 loadMore();
             }
-        });
+        }, { threshold: 0.3 });
         if (endPage) observer.observe(endPage);
     };
 
@@ -47,7 +47,7 @@ const CardGrid = () => {
                 }
                 )}
             </div>
-            <div ref={endOfPageRef} />
+            <div className="h-16" ref={endOfPageRef} />
             <div className="mt-2">
                 {isLoading && <Loader />}
             </div>

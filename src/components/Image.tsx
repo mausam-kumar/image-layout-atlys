@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Loader from "./Loader";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     placeholderColor?: string;
@@ -34,7 +35,7 @@ const Image: React.FC<ImageProps> = ({
                     className="absolute top-0 left-0 w-full h-full flex justify-center items-center text-gray-500"
                     style={{ backgroundColor: placeholderColor }}
                 >
-                    Loading...
+                    <Loader />
                 </div>
             )}
 
